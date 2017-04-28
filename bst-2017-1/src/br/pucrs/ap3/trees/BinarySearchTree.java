@@ -1,9 +1,13 @@
-package br.pucrs.ap3.trees;
+/***
+ * Copyright (c) 1994, 2013, Oracle and/or its affiliates. All rights reserved.
+ * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
+ */
 
+package br.pucrs.ap3.trees;
 
 /**
  * 
- * @author marco.mangan@pucrs.br
+ * @author Robson Andrei dos Santos
  *
  */
 public class BinarySearchTree {
@@ -70,6 +74,28 @@ public class BinarySearchTree {
 		if (node == null)
 			return " # ";
 		return toString0(node.left) + String.format(" %d ", node.key) + toString0(node.right);
+	}
+
+	/***
+	 * Reports level number for every node.
+	 * 
+	 * Prints key and level for every node. Root node is at level
+	 */
+	public void reportLevel() {
+		reportLevel0(root, 0);
+
+	}
+
+	private void reportLevel0(Node node, int level) {
+
+		if (node != null) {
+			System.out.printf("Key=%d Level=%d!\n", node.key, level);
+
+			reportLevel0(node.left, level + 1);
+			reportLevel0(node.right, level + 1);
+
+		}
+
 	}
 
 }

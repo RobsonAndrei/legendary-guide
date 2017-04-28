@@ -9,6 +9,7 @@ public class BinarySearchTreeApp {
 		bst.add(10);
 		System.out.println(bst);
 		System.out.println(bst.size());
+		bst.reportLevel();
 		bst.add(20);
 		System.out.println(bst);
 		System.out.println(bst.size());

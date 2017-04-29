@@ -7,7 +7,7 @@ package br.pucrs.ap3.trees;
 
 /**
  * 
- * @author Robson Andrei dos Santos
+ * @author robson.andrei@acad.pucrs.br
  *
  */
 public class BinarySearchTree {

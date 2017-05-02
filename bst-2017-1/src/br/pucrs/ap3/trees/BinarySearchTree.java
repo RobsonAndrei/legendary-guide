@@ -21,11 +21,20 @@ public class BinarySearchTree {
 	public void add(int value) {
 		root = add0(root, value);
 	}
-
+/***
+ * 
+ * @param value
+ * @return
+ */
 	public boolean contains(int value) {
 		return contains0(root, value);
 	}
-
+/***
+ * 
+ * @param node
+ * @param value
+ * @return
+ */
 	private Node add0(Node node, int value) {
 		if (node == null) {
 			Node n = new Node();
@@ -42,7 +51,12 @@ public class BinarySearchTree {
 			node.left = add0(node.left, value);
 		return node;
 	}
-
+/***
+ * 
+ * @param node
+ * @param value
+ * @return
+ */
 	private boolean contains0(Node node, int value) {
 		if (node == null)
 			return false;
@@ -53,7 +67,10 @@ public class BinarySearchTree {
 		return contains0(node.left, value);
 
 	}
-
+/***
+ * 
+ * @return
+ */
 	public int size() {
 		return size0(root);
 	}
@@ -64,7 +81,9 @@ public class BinarySearchTree {
 
 		return 1 + size0(node.left) + size0(node.right);
 	}
-
+/***
+ * 
+ */
 	@Override
 	public String toString() {
 		return toString0(root);

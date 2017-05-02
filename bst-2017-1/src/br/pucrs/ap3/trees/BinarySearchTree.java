@@ -11,30 +11,41 @@ package br.pucrs.ap3.trees;
  *
  */
 public class BinarySearchTree {
-
+	/**
+	 * 
+	 */
 	private Node root;
 
+	/**
+	 * 
+	 */
 	public BinarySearchTree() {
 		root = null;
 	}
 
+	/**
+	 * 
+	 * @param value
+	 */
 	public void add(int value) {
 		root = add0(root, value);
 	}
-/***
- * 
- * @param value
- * @return
- */
+
+	/***
+	 * 
+	 * @param value
+	 * @return
+	 */
 	public boolean contains(int value) {
 		return contains0(root, value);
 	}
-/***
- * 
- * @param node
- * @param value
- * @return
- */
+
+	/***
+	 * 
+	 * @param node
+	 * @param value
+	 * @return
+	 */
 	private Node add0(Node node, int value) {
 		if (node == null) {
 			Node n = new Node();
@@ -51,12 +62,13 @@ public class BinarySearchTree {
 			node.left = add0(node.left, value);
 		return node;
 	}
-/***
- * 
- * @param node
- * @param value
- * @return
- */
+
+	/***
+	 * 
+	 * @param node
+	 * @param value
+	 * @return
+	 */
 	private boolean contains0(Node node, int value) {
 		if (node == null)
 			return false;
@@ -67,10 +79,11 @@ public class BinarySearchTree {
 		return contains0(node.left, value);
 
 	}
-/***
- * 
- * @return
- */
+
+	/***
+	 * 
+	 * @return
+	 */
 	public int size() {
 		return size0(root);
 	}
@@ -81,9 +94,10 @@ public class BinarySearchTree {
 
 		return 1 + size0(node.left) + size0(node.right);
 	}
-/***
- * 
- */
+
+	/***
+	 * 
+	 */
 	@Override
 	public String toString() {
 		return toString0(root);
@@ -105,6 +119,11 @@ public class BinarySearchTree {
 
 	}
 
+	/***
+	 * 
+	 * @param node
+	 * @param level
+	 */
 	private void reportLevel0(Node node, int level) {
 
 		if (node != null) {
@@ -114,6 +133,31 @@ public class BinarySearchTree {
 			reportLevel0(node.right, level + 1);
 
 		}
+
+	}
+
+	/***
+	 * Report height number for every node.
+	 * 
+	 * Prints key and height for every node. Leaf nodes are at height 0.
+	 */
+	public void reportHeight() {
+		reportHeight0(root);
+	}
+
+	/***
+	 * @param node
+	 * @return
+	 */
+	private int reportHeight0(Node n) {
+		if (n == null) {
+			return -1;
+		}
+		int heightLeft = reportHeight0(n.left);
+		int heightRight = reportHeight0(n.right);
+		int height = Math.max(heightLeft, heightRight) + 1;
+		System.out.printf("Key = %d Height = %d!= \n", n.key, height);
+		return height;
 
 	}
 

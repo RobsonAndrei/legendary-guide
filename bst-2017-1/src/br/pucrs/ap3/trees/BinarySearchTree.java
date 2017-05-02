@@ -153,9 +153,9 @@ public class BinarySearchTree {
 		if (n == null) {
 			return -1;
 		}
-		int heightLeft = reportHeight0(n.left);
-		int heightRight = reportHeight0(n.right);
-		int height = Math.max(heightLeft, heightRight) + 1;
+		int heightLeft = reportHeight0(n.left) ;
+		int heightRight = reportHeight0(n.right) ;
+		int height = Math.max(heightRight, heightLeft) +1;
 		System.out.printf("Key = %d Height = %d!= \n", n.key, height);
 		return height;
 

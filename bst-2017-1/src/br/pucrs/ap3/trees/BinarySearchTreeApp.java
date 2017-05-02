@@ -10,11 +10,15 @@ public class BinarySearchTreeApp {
 		System.out.println(bst);
 		System.out.println(bst.size());
 		bst.reportLevel();
+		System.out.println("Teste da altura da arvore");
+		bst.reportHeight();
 		bst.add(20);
 		System.out.println(bst);
 		System.out.println(bst.size());
+		bst.reportHeight();
 		bst.add(5);
 		System.out.println(bst);
 		System.out.println(bst.size());
+		bst.reportHeight();
 	}
 }

@@ -153,11 +153,44 @@ public class BinarySearchTree {
 		if (n == null) {
 			return -1;
 		}
-		int heightLeft = reportHeight0(n.left) ;
-		int heightRight = reportHeight0(n.right) ;
-		int height = Math.max(heightRight, heightLeft) +1;
-		System.out.printf("Key = %d Height = %d!= \n", n.key, height);
+		int heightLeft = reportHeight0(n.left);
+		int heightRight = reportHeight0(n.right);
+		int height = Math.max(heightRight, heightLeft) + 1;
+		System.out.printf("Key = %d Height = %d! \n", n.key, height);
 		return height;
+
+	}
+
+	/***
+	 * 
+	 */
+	public void reportDegree() {
+		reportDegree0(root);
+	}
+
+	/***
+	 * 
+	 * @param n
+	 * @return
+	 */
+	private int reportDegree0(Node n) {
+		
+
+		if (n != null) {
+			return 0;
+		}
+		
+		int degreeL = 0, degreeR = 0;
+		
+		if (n.left != null) {
+			degreeL = reportDegree0(n.left) + 1;
+		}
+		if (n.right != null) {
+			degreeR = reportDegree0(n.right) + 1;
+		}
+	
+		System.out.println("Teste");
+		return degreeL+degreeR;
 
 	}
 

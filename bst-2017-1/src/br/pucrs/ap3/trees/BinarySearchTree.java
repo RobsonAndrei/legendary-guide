@@ -162,7 +162,10 @@ public class BinarySearchTree {
 	}
 
 	/***
+	 * Returns the degree of all nodes, starting with the root node
 	 * 
+	 * Prints degree for node root, 0 if the node do not have children.
+
 	 */
 	public void reportDegree() {
 		reportDegree0(root);
@@ -176,7 +179,7 @@ public class BinarySearchTree {
 	private int reportDegree0(Node n) {
 		
 
-		if (n != null) {
+		if (n == null) {
 			return 0;
 		}
 		
@@ -189,7 +192,7 @@ public class BinarySearchTree {
 			degreeR = reportDegree0(n.right) + 1;
 		}
 	
-		System.out.println("Teste");
+		System.out.println(degreeL+degreeR);
 		return degreeL+degreeR;
 
 	}

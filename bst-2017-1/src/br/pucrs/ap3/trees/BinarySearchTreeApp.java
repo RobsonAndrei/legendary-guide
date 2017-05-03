@@ -18,11 +18,15 @@ public class BinarySearchTreeApp {
 		//System.out.println(bst);
 		//System.out.println(bst.size());
 		//bst.reportHeight();
+		//bst.reportDegree();
+		System.out.println("Grau do nodo raiz com um filho");
 		bst.reportDegree();
 		bst.add(5);
 		//System.out.println(bst);
 		//System.out.println(bst.size());
 		//bst.reportHeight();
+		//bst.reportDegree();
+		System.out.println("Grau do nodo raiz com dois filho");
 		bst.reportDegree();
 		
 		

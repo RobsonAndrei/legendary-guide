@@ -162,11 +162,15 @@ public class AvlTree {
 	 * @param level
 	 */
 	private void reportLevel0(AvlNode node, int level) {
-		if (node == null) {
+		if (node != null) {
+
 			System.out.printf("Key=%d Level=%d!\n", node.key, level);
 
 			reportLevel0(node.left, level + 1);
 			reportLevel0(node.right, level + 1);
+
+			// System.out.printf("Key=%d Level=%d!\n", node.key, level);
+
 		}
 	}
 

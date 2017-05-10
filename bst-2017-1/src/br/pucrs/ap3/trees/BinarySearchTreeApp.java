@@ -34,23 +34,24 @@ public class BinarySearchTreeApp {
 		System.out.println("Teste de árvore AVL");
 		System.out.println(avlT);
 		System.out.println(avlT.size());
-		avlT.add(10);
+		avlT.add(20);
 		System.out.println(avlT);
 		System.out.println("Report level");
 		avlT.reportLevel();
 		System.out.println("Report height");
 		avlT.reportHeight();
 		System.out.printf("Tamanho = %d\n\n", avlT.size());
-		avlT.add(20);
-		System.out.println(avlT);
-		avlT.reportLevel();
-		avlT.reportHeight();
-		System.out.printf("Tamanho = %d\n\n", avlT.size());
 		avlT.add(30);
 		System.out.println(avlT);
 		avlT.reportLevel();
 		avlT.reportHeight();
+		System.out.printf("Tamanho = %d\n\n", avlT.size());
+		avlT.add(10);
+		System.out.println(avlT);
+		avlT.reportLevel();
+		avlT.reportHeight();
 		System.out.printf("Tamanho = %d\n", avlT.size());
+		
 
 	}
 }

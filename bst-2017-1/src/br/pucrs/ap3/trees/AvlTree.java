@@ -70,9 +70,9 @@ public class AvlTree {
 			node.right = add0(node.right, value);
 			// Todo: AVL
 			// Qual o fator de equilibrio? Delta
-			int delta = getHeight(node.right) - getHeight(node.left);
+			int delta = getHeight(node.left) - getHeight(node.right);
 			System.out.printf("Key=%d, Delta=%d\n", node.key, delta);
-			if (delta == 2) {
+			if (delta == -2) {
 				if (value > node.right.key)
 					node = rotateLeft(node);
 				else {
@@ -82,6 +82,18 @@ public class AvlTree {
 			}
 		} else {
 			node.left = add0(node.left, value);
+			int delta = getHeight(node.right) - getHeight(node.left);
+			System.out.printf("Key=%d, Delta=%d\n",node.key, delta);
+			if(delta == -2){
+				if(value< node.left.key)
+					node = rotateRight(node);
+				else{
+					node.left = rotateLeft(node.left);
+					node = rotateRight(node);
+				}
+			}
+			
+			
 			// Todo: AVL
 		}
 		// Atualizar altura em cada nodo....
@@ -92,6 +104,11 @@ public class AvlTree {
 		return node;
 	}
 
+	/***
+	 * 
+	 * @param k2
+	 * @return
+	 */
 	private AvlNode rotateRight(AvlNode k2) {
 		AvlNode k1 = k2.left;
 		k2.left = k1.right;
@@ -99,6 +116,11 @@ public class AvlTree {
 		return k1;
 	}
 
+	/***
+	 * 
+	 * @param k1
+	 * @return
+	 */
 	private AvlNode rotateLeft(AvlNode k1) {
 		AvlNode k2 = k1.right;
 		k1.right = k2.left;

@@ -82,18 +82,17 @@ public class AvlTree {
 			}
 		} else {
 			node.left = add0(node.left, value);
-			int delta = getHeight(node.right) - getHeight(node.left);
-			System.out.printf("Key=%d, Delta=%d\n",node.key, delta);
-			if(delta == -2){
-				if(value< node.left.key)
+			int delta = getHeight(node.left) - getHeight(node.right);
+			System.out.printf("Key=%d, Delta=%d\n", node.key, delta);
+			if (delta == 2) {
+				if (value < node.left.key)
 					node = rotateRight(node);
-				else{
+				else {
 					node.left = rotateLeft(node.left);
 					node = rotateRight(node);
 				}
 			}
-			
-			
+
 			// Todo: AVL
 		}
 		// Atualizar altura em cada nodo....

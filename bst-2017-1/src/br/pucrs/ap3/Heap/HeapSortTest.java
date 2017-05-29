@@ -1,4 +1,4 @@
-package Heap;
+package br.pucrs.ap3.Heap;
 
 import org.junit.BeforeClass;
 import org.junit.Test;

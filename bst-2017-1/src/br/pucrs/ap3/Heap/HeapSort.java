@@ -2,7 +2,7 @@
  * Copyright
  */
 
-package Heap;
+package br.pucrs.ap3.Heap;
 
 public class HeapSort {
 

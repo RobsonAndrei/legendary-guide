@@ -5,196 +5,214 @@
 
 package br.pucrs.ap3.trees;
 
+import java.util.ArrayList;
+
 /**
- * 
  * @author robson.andrei@acad.pucrs.br
- *
  */
 public class BinarySearchTree {
-	/**
-	 * 
-	 */
-	private Node root;
+    /**
+     *
+     */
+    private Node root;
 
-	/**
-	 * 
-	 */
-	public BinarySearchTree() {
-		root = null;
-	}
+    /**
+     *
+     */
+    public BinarySearchTree() {
+        root = null;
+    }
 
-	/**
-	 * 
-	 * @param value
-	 */
-	public void add(int value) {
-		root = add0(root, value);
-	}
+    /**
+     * @param value
+     */
+    public void add(int value) {
+        root = add0(root, value);
+    }
 
-	/***
-	 * 
-	 * @param value
-	 * @return
-	 */
-	public boolean contains(int value) {
-		return contains0(root, value);
-	}
+    /***
+     *
+     * @param value
+     * @return
+     */
+    public boolean contains(int value) {
+        return contains0(root, value);
+    }
 
-	/***
-	 * 
-	 * @param node
-	 * @param value
-	 * @return
-	 */
-	private Node add0(Node node, int value) {
-		if (node == null) {
-			Node n = new Node();
-			n.key = value;
-			n.left = null;
-			n.right = null;
-			return n;
-		}
-		if (node.key == value)
-			throw new RuntimeException("Valor existente!");
-		if (node.key < value)
-			node.right = add0(node.right, value);
-		else
-			node.left = add0(node.left, value);
-		return node;
-	}
+    /***
+     *
+     * @param node
+     * @param value
+     * @return
+     */
+    private Node add0(Node node, int value) {
+        if (node == null) {
+            Node n = new Node();
+            n.key = value;
+            n.left = null;
+            n.right = null;
+            return n;
+        }
+        if (node.key == value)
+            throw new RuntimeException("Valor existente!");
+        if (node.key < value)
+            node.right = add0(node.right, value);
+        else
+            node.left = add0(node.left, value);
+        return node;
+    }
 
-	/***
-	 * 
-	 * @param node
-	 * @param value
-	 * @return
-	 */
-	private boolean contains0(Node node, int value) {
-		if (node == null)
-			return false;
-		if (node.key == value)
-			return true;
-		if (node.key < value)
-			return contains0(node.right, value);
-		return contains0(node.left, value);
+    /***
+     *
+     * @param node
+     * @param value
+     * @return
+     */
+    private boolean contains0(Node node, int value) {
+        if (node == null)
+            return false;
+        if (node.key == value)
+            return true;
+        if (node.key < value)
+            return contains0(node.right, value);
+        return contains0(node.left, value);
 
-	}
+    }
 
-	/***
-	 * 
-	 * @return
-	 */
-	public int size() {
-		return size0(root);
-	}
+    /***
+     *
+     * @return
+     */
+    public int size() {
+        return size0(root);
+    }
 
-	private int size0(Node node) {
-		if (node == null)
-			return 0;
+    private int size0(Node node) {
+        if (node == null)
+            return 0;
 
-		return 1 + size0(node.left) + size0(node.right);
-	}
+        return 1 + size0(node.left) + size0(node.right);
+    }
 
-	/***
-	 * 
-	 */
-	@Override
-	public String toString() {
-		return toString0(root);
-	}
+    /***
+     *
+     */
+    @Override
+    public String toString() {
+        return toString0(root);
+    }
 
-	private String toString0(Node node) {
-		if (node == null)
-			return " # ";
-		return toString0(node.left) + String.format(" %d ", node.key) + toString0(node.right);
-	}
+    private String toString0(Node node) {
+        if (node == null)
+            return " # ";
+        return toString0(node.left) + String.format(" %d ", node.key) + toString0(node.right);
+    }
 
-	/***
-	 * Reports level number for every node.
-	 * 
-	 * Prints key and level for every node. Root node is at level
-	 */
-	public void reportLevel() {
-		reportLevel0(root, 0);
+    /***
+     * Reports level number for every node.
+     *
+     * Prints key and level for every node. Root node is at level
+     */
+    public void reportLevel() {
+        reportLevel0(root, 0);
 
-	}
+    }
 
-	/***
-	 * 
-	 * @param node
-	 * @param level
-	 */
-	private void reportLevel0(Node node, int level) {
+    /***
+     *
+     * @param node
+     * @param level
+     */
+    private void reportLevel0(Node node, int level) {
 
-		if (node != null) {
-			System.out.printf("Key=%d Level=%d!\n", node.key, level);
+        if (node != null) {
+            System.out.printf("Key=%d Level=%d!\n", node.key, level);
 
-			reportLevel0(node.left, level + 1);
-			reportLevel0(node.right, level + 1);
+            reportLevel0(node.left, level + 1);
+            reportLevel0(node.right, level + 1);
 
-		}
+        }
 
-	}
+    }
 
-	/***
-	 * Report height number for every node.
-	 * 
-	 * Prints key and height for every node. Leaf nodes are at height 0.
-	 */
-	public void reportHeight() {
-		reportHeight0(root);
-	}
+    /***
+     * Report height number for every node.
+     *
+     * Prints key and height for every node. Leaf nodes are at height 0.
+     */
+    public void reportHeight() {
+        reportHeight0(root);
+    }
 
-	/***
-	 * @param node
-	 * @return
-	 */
-	private int reportHeight0(Node n) {
-		if (n == null) {
-			return -1;
-		}
-		int heightLeft = reportHeight0(n.left);
-		int heightRight = reportHeight0(n.right);
-		int height = Math.max(heightRight, heightLeft) + 1;
-		System.out.printf("Key = %d Height = %d! \n", n.key, height);
-		return height;
+    /***
+     * @param node
+     * @return
+     */
+    private int reportHeight0(Node n) {
+        if (n == null) {
+            return -1;
+        }
+        int heightLeft = reportHeight0(n.left);
+        int heightRight = reportHeight0(n.right);
+        int height = Math.max(heightRight, heightLeft) + 1;
+        System.out.printf("Key = %d Height = %d! \n", n.key, height);
+        return height;
 
-	}
+    }
 
-	/***
-	 * Returns the degree of all nodes, starting with the root node
-	 * 
-	 * Prints degree for node root, 0 if the node do not have children.
+    /***
+     * Returns the degree of all nodes, starting with the root node
+     *
+     * Prints degree for node root, 0 if the node do not have children.
+     *
+     */
+    public void reportDegree() {
+        reportDegree0(root);
+    }
 
-	 */
-	public void reportDegree() {
-		reportDegree0(root);
-	}
+    /***
+     *
+     * @param n
+     * @return
+     */
+    private int reportDegree0(Node n) {
 
-	/***
-	 * 
-	 * @param n
-	 * @return
-	 */
-	private int reportDegree0(Node n) {
-		
+        if (n == null) {
+            return 0;
+        }
 
-		if (n == null) {
-			return 0;
-		}
-		
-		int degreeL = 0, degreeR = 0;
-		
-		if (n.left != null) {
-			degreeL = reportDegree0(n.left) + 1;
-		}
-		if (n.right != null) {
-			degreeR = reportDegree0(n.right) + 1;
-		}
-	
-		System.out.println(degreeL+degreeR);
-		return degreeL+degreeR;
+        int degreeL = 0, degreeR = 0;
 
-	}
+        if (n.left != null) {
+            degreeL = reportDegree0(n.left) + 1;
+        }
+        if (n.right != null) {
+            degreeR = reportDegree0(n.right) + 1;
+        }
+
+        System.out.println(degreeL + degreeR);
+        return degreeL + degreeR;
+
+    }
+
+    public ArrayList<String> getInternalElements() {
+        ArrayList<String> res = new ArrayList<>();
+        getInternalElements(root, res);
+        return res;
+    }
+
+    private void getInternalElements(Node node, ArrayList<String> res) {
+        if (node != null) {
+            if ((node != root) && node.left != null || (node.right != null)) {
+                String r = String.format("%d", node.key);
+                res.add(r);
+            }
+
+            getInternalElements(node.left, res);
+            getInternalElements(node.right, res);
+        }
+
+    }
+   
 
 }

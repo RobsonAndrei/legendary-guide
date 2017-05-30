@@ -33,7 +33,7 @@ public class AvlTree {
     }
 
     /**
-     * @param value
+     * @param values
      * @return
      */
     public boolean contains(int value) {

@@ -18,6 +18,8 @@ public class GraphApp {
 		
 		System.out.println(g);
 		System.out.println(g.getNext(2));
+		//System.out.println(g.getNext(5));
+		System.out.println(g.breadth(1));
 		
 	}
 }

@@ -63,48 +63,117 @@ public abstract class AbstractGraph {
 
 	// Todo marcar se foi visitado, para evitar ciclos
 	public List<Integer> breadth(int s) {
+		List<Integer> r = new ArrayList<>();
 		checkNode(s);
-				// 1 - 7
-				// TODO trocar para enum!
-				int color[] = new int[m.length];
-				int d[] = new int[m.length];
-				int p[] = new int[m.length];
-				for (int u = 1; u < color.length; u++) {
-					color[u] = WHITE;
-					d[u] = 1000;
-					p[u] = -1;
+		// 1 - 7
+		// TODO trocar para enum!
+		int color[] = new int[m.length];
+		int d[] = new int[m.length];
+		int p[] = new int[m.length];
+		for (int u = 1; u < color.length; u++) {
+			color[u] = WHITE;
+			d[u] = 1000;
+			p[u] = -1;
+		}
+		color[s] = GRAY;
+		d[s] = 0;
+		p[s] = -1;
+		// 8, 9
+		List<Integer> Q = new LinkedList<Integer>();
+		Q.add(s);
+		// 10
+		while (!Q.isEmpty()) {
+			// TODO: confirmar se eh uma fila!
+			int u = Q.remove(0);
+			for (Integer v : getNext(u)) {
+				if (color[v] == WHITE) {
+					color[v] = GRAY;
+					d[v] = d[u] + 1;
+					p[v] = u;
+					Q.add(v);
 				}
-				color[s] = GRAY;
-				d[s] = 0;
-			p[s] = -1;
-			// 8, 9
-			List<Integer> Q = new LinkedList<Integer>();
-			Q.add(s);
-				//10
-				while (  ! Q.isEmpty() ) {
-					// TODO: confirmar se eh uma fila!
-					int u = Q.remove(0);
-					for (Integer v : getNext(u)) {
-						if (color[v] == WHITE) {
-							color[v] = GRAY;
-						d[v] = d[u] + 1;
-							p[v] = u;
-							Q.add(v);
-						}
-					}
-					color[u] = BLACK;
-				}
-				
-				System.out.println(Arrays.toString(d));
-				System.out.println(Arrays.toString(p));
-				
-		 		return null;
+			}
+			color[u] = BLACK;
+			r.add(u);
+		}
+
+		System.out.println(Arrays.toString(d));
+		System.out.println(Arrays.toString(p));
+
+		return r;
 	}
 
-	public List<Integer> depth(int i) {
-		checkNode(i);
-		// Todo
-		return null;
+	/***
+	 * Recursiv method
+	 * 
+	 * @param s
+	 * @return
+	 */
+	public List<Integer> depth(int s) {
+		checkNode(s);
+		List<Integer> r = new ArrayList<>();
+		depth0(s, r);
+		return r;
+
+	}
+
+	private void depth0(int s, List<Integer> r) {
+
+		r.add(s);
+		for (Integer v : getNext(s)) {
+			if (!r.contains(v)) // No grafo testamos se v está na lista
+				depth0(v, r);
+
+		}
+
+		// TODO Auto-generated method stub
+
+	}
+
+	private int counter;
+	private int[] finish;
+	private int[] color;
+	private int[] discovery;
+
+	public List<Integer> topological() {
+		int startNode = 1;// start do livro do Cormen
+		counter = 1;
+		color = new int[m.length];
+		finish = new int[m.length];
+		discovery = new int[m.length];
+		for (int u = 1; u < color.length; u++) {
+			color[u] = WHITE;
+			discovery[u] = -1;
+			finish[u] = -1;
+		}
+		checkNode(startNode);
+		List<Integer> sorted = new ArrayList<>();
+		for (int u = 1; u < color.length; u++) {
+			if (color[u] == WHITE) {
+				topological0(u, sorted);
+			}
+		}
+		return sorted;
+
+	}
+
+	private void topological0(int node, List<Integer> sorted) {
+
+		sorted.add(node);
+		color[node] = GRAY;
+		discovery[node] = counter;
+		counter++;
+		for (Integer adjacentNode : getNext(node)) {
+			if (!sorted.contains(adjacentNode)) // No grafo testamos se v está
+												// na lista
+				topological0(adjacentNode, sorted);
+
+		}
+		color[node] = BLACK;
+		finish[node] = counter;
+		counter++;
+
+		// TODO Auto-generated method stub
 
 	}
 
